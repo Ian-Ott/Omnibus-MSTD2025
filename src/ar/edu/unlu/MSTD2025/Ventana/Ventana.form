@@ -27,6 +27,9 @@
               </grid>
             </constraints>
             <properties>
+              <disabledTextColor color="-16777216"/>
+              <editable value="false"/>
+              <enabled value="false"/>
               <font name="Calibri" size="36" style="1"/>
               <text value="LOS OMNIBUS"/>
             </properties>
@@ -80,6 +83,10 @@
               </grid>
             </constraints>
             <properties>
+              <disabledTextColor color="-16777216"/>
+              <editable value="false"/>
+              <enabled value="false"/>
+              <foreground color="-16777216"/>
               <text value="Ingrese la cantidad de viajes que desea:"/>
             </properties>
           </component>

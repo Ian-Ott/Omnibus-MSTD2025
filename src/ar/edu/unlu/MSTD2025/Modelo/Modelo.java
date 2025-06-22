@@ -7,11 +7,13 @@ public class Modelo {
     private double tiempoMasLargo = -1;
     private int cantViajes;
     private ArrayList<Viaje> listaViaje;
+    private ArrayList<Double> listaTTordenada;
 
     public Modelo (int cantViaje){
         cantViajes = cantViaje;
         listaViaje = new ArrayList<>(cantViaje);
         realizarViajes(cantViaje);
+        ordenarTiempoTotal();
     }
 
     private void realizarViajes(int cantViaje) {
@@ -22,6 +24,28 @@ public class Modelo {
             System.out.println("Tiempo total viaje: " + viaje.getTiempoTotal());
         }
 
+    }
+
+    private void ordenarTiempoTotal() {
+        listaTTordenada = new ArrayList<>(cantViajes);
+        for (int i = 0; i < listaViaje.size(); i++) {
+            if (listaTTordenada.isEmpty()){
+                listaTTordenada.add(listaViaje.get(i).getTiempoTotal());
+            }else {
+                Double actual = listaViaje.get(i).getTiempoTotal();
+                Double temp;
+                for (int j = 0; j < listaTTordenada.size(); j++) {
+                    if (actual < listaTTordenada.get(j)){
+                        listaTTordenada.add(j,actual);
+                        j = listaTTordenada.size();
+                    } else if (j == listaTTordenada.size()- 1) {
+                        //caso del ultimo
+                        listaTTordenada.add(j+1,actual);
+                        j = listaTTordenada.size();
+                    }
+                }
+            }
+        }
     }
     public ArrayList<Double> obtenerResultadoViaje(int nroViaje){
         ArrayList<Double> resultadoViaje = new ArrayList<>(26);
@@ -52,5 +76,40 @@ public class Modelo {
         resultadoViaje.add(listaViaje.get(nroViaje).getTiempoTramo(13));
         resultadoViaje.add(listaViaje.get(nroViaje).getTiempoTotal());
         return resultadoViaje;
+    }
+
+    public Double obtenerTiempoMasCorto(Double alfa){
+        Double valor = 0.0;
+        Double porcentajeActual;
+        for (int i = 0; i < listaTTordenada.size(); i++) {
+            porcentajeActual = ((i + 1.0) / listaTTordenada.size());
+            if (porcentajeActual >= alfa){
+                valor = listaTTordenada.get(i);
+                i = listaTTordenada.size();
+            }
+        }
+        return valor;
+    }
+
+    public Double obtenerTiempoMasLargo(Double alfa){
+        alfa = 1 - alfa;
+        Double valor = 0.0;
+        Double porcentajeActual;
+        for (int i = 0; i < listaTTordenada.size(); i++) {
+            porcentajeActual = ((i + 1.0) / listaTTordenada.size());
+            if (porcentajeActual >= alfa){
+                valor = listaTTordenada.get(i);
+                i = listaTTordenada.size();
+            }
+        }
+        return valor;
+    }
+
+    public Double obtenerPromedioViajes(){
+        Double suma = 0.0;
+        for (int i = 0; i < listaTTordenada.size(); i++) {
+            suma = suma + listaTTordenada.get(i);
+        }
+        return suma/listaTTordenada.size();//devuelve promedio
     }
 }

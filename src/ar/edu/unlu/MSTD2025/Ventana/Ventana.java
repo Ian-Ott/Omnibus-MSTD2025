@@ -24,13 +24,23 @@ public class Ventana {
         frame.setSize(500,500);
         frame.add(panelPrincipal);
         frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         CALCULARButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Integer cantViaje = Integer.valueOf(textFieldViajes.getText());
-                modelo = new Modelo(cantViaje);
-                cargarMatriz(cantViaje);
-                new VentanaMatrizResultado(matrizResult);
+                Integer cantViaje = 0;
+                try{
+                    cantViaje = Integer.valueOf(textFieldViajes.getText());
+                } catch (NumberFormatException ex) {
+                    mostrarError("El valor ingresado no es valido.");
+                }
+                if (cantViaje >= 1 && cantViaje <= 1000000000) {
+                    modelo = new Modelo(cantViaje);
+                    cargarMatriz(cantViaje);
+                    new VentanaMatrizResultado(matrizResult, modelo);
+                }else {
+                    mostrarError("La cantidad ingresada no es valida.");
+                }
             }
         });
     }
@@ -48,6 +58,10 @@ public class Ventana {
                 matrizResult.setValueAt(i,j,listaTemp.get(j));
             }
         }
+    }
+
+    private void mostrarError(String textError) {
+        JOptionPane.showMessageDialog(null,textError,"ERROR",JOptionPane.ERROR_MESSAGE);//agregar icono?
     }
 
     public void main() {

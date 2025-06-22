@@ -3,6 +3,7 @@ package ar.edu.unlu.MSTD2025.Ventana;
 
 
 import ar.edu.unlu.MSTD2025.Modelo.Matriz.Matriz;
+import ar.edu.unlu.MSTD2025.Modelo.Modelo;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -12,16 +13,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
 
 public class VentanaMatrizResultado {
     private Matriz listaTabla;
-    private boolean error = false;
     private JButton BotonSiguiente;
-    private JFrame frameResultado;
+    private JFrame frameEstadistico;
+    private Modelo modelo;
 
-    public VentanaMatrizResultado(Matriz tablaL){
+    public VentanaMatrizResultado(Matriz tablaL, Modelo modelo){
         this.listaTabla = tablaL;
+        this.modelo = modelo;
         iniciarVentana();
     }
 
@@ -37,8 +38,8 @@ public class VentanaMatrizResultado {
             @Override
             public void windowClosing(WindowEvent e) {
                 super.windowClosed(e);
-                if (frameResultado != null) {
-                    frameResultado.dispose();
+                if (frameEstadistico != null) {
+                    frameEstadistico.dispose();
                 }
             }
         });
@@ -139,53 +140,14 @@ public class VentanaMatrizResultado {
         BotonSiguiente.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 BotonSiguiente.setEnabled(false);
-                if(tabla.isEditing()){
-                    tabla.getCellEditor().stopCellEditing();
-                }
-                if (!error) {
-                    String vActual;
-                    listaTabla.setLista(new ArrayList<>());
-                    for (int i = 0; i < tabla.getRowCount(); i++) {
-                        for (int j = 0; j < tabla.getColumnCount(); j++) {
-                            if(!error) {
-                                vActual = (String) tabla.getValueAt(i, j);
-                                Double vNumActual = 0.0;
-                                if (vActual != null) {
-                                    try {
-                                        vNumActual = Double.valueOf(vActual);
-                                    } catch (NumberFormatException ex) {
-                                        error = true;
-                                        mostrarError("El valor ingresado en la matriz de beneficios no es valido");
-                                    }
-                                    listaTabla.setValueAt(i, j, vNumActual); //falta verificacion de tipo
-                                } else {
-                                    error = true;
-                                    mostrarError("La matriz de beneficios no puede tener celdas vacias.");
-                                }
-                            }
-                        }
-                    }
-
-                }else {error = false;
-                    BotonSiguiente.setEnabled(true);
-                }
+                VentanaEstadisticos estadistico = new VentanaEstadisticos(modelo);
+                frameEstadistico = estadistico.iniciarVentana();
             }
         });
     }
 
-    private int encabezadoSizeMax(String[] nombreFila, FontMetrics tamanioFuente) {
-        int maxLenght = 0;
-        int actual;
-        for (int i = 0; i < nombreFila.length; i++) {
-            actual = tamanioFuente.stringWidth(nombreFila[i]);
-            if (nombreFila[i].length() > maxLenght){
-                maxLenght = actual;
-            }
-        }
-        return maxLenght;
-    }
+
     private void setEncabezadoSizeMax(JTable tabla, String[] nombreCol, FontMetrics tamanioFuente) {
         int maxLenght = 0;
         int actual;
@@ -194,7 +156,5 @@ public class VentanaMatrizResultado {
             tabla.getColumnModel().getColumn(i).setPreferredWidth(actual + 20);
         }
     }
-    private void mostrarError(String textError) {
-        JOptionPane.showMessageDialog(null,textError,"ERROR",JOptionPane.ERROR_MESSAGE);//agregar icono?
-    }
+
 }
