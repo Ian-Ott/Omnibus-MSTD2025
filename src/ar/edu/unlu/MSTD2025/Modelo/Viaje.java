@@ -133,4 +133,15 @@ public class Viaje {
         }
     }
 
+    public double getTiempoParada(int nroParada) {
+        return paradas.get(nroParada-1).getTiempoTotal();
+    }
+
+    public double getTiempoSemaforo(int nroSemaforo) {
+        return semaforos.get(nroSemaforo-1).getTiempoTotal();
+    }
+
+    public double getTiempoTramo(int nroTramo) {
+        return tramos.get(nroTramo-1).getTiempoTotal();
+    }
 }
