@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Omnibus-MSTD2025:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Omnibus_MSTD2025_jar</output-path>
+    <root id="archive" name="Omnibus-MSTD2025.jar">
+      <element id="module-output" name="Omnibus-MSTD2025" />
+    </root>
+  </artifact>
+</component>

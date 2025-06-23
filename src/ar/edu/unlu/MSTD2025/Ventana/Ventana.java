@@ -43,7 +43,7 @@ public class Ventana {
                     mostrarError("El valor ingresado no es valido.");
                     error = true;
                 }
-                if (cantViaje >= 1 && cantViaje <= 1000000000) {
+                if (cantViaje >= 1 && cantViaje <= 10000) {
                     if (cantOmnibus >= 1 && cantOmnibus <= 25) {
                         modelo = new Modelo(cantViaje, cantOmnibus);
                         cargarMatriz(cantViaje);
@@ -51,14 +51,14 @@ public class Ventana {
                         new VentanaMatrizResultado(matrizResult, modelo);
                     }else {
                         if (!error) {
-                            mostrarError("La cantidad ingresada de omnibus no es valida. (rango permtido 1-25 omnibus)");
+                            mostrarError("La cantidad ingresada de omnibus no es valida. \n(rango permtido 1-25 omnibus)");
                         }else {
                             error = false;
                         }
                     }
                 }else {
                     if (!error) {
-                        mostrarError("La cantidad ingresada de viajes no es valida. (rango permitido 1-");
+                        mostrarError("La cantidad ingresada de viajes no es valida. \n(rango permitido 1-10000 viajes)");
                     }else {
                         error = false;
                     }
@@ -87,8 +87,6 @@ public class Ventana {
         JOptionPane.showMessageDialog(null,textError,"ERROR",JOptionPane.ERROR_MESSAGE);//agregar icono?
     }
 
-    public void main() {
-    }
 }
 
 
