@@ -3,14 +3,16 @@ package ar.edu.unlu.MSTD2025.Modelo;
 import java.util.ArrayList;
 
 public class Modelo {
-    private double tiempoMasCorto = 1000000000;
-    private double tiempoMasLargo = -1;
     private int cantViajes;
     private ArrayList<Viaje> listaViaje;
     private ArrayList<Double> listaTTordenada;
+    private Double tiempoMasLargo;
+    private Double tiempoMasCorto;
+    private int cantOmnibus;
 
-    public Modelo (int cantViaje){
-        cantViajes = cantViaje;
+    public Modelo (int cantViaje, int cantOmnibus){
+        this.cantOmnibus = cantOmnibus;
+        this.cantViajes = cantViaje;
         listaViaje = new ArrayList<>(cantViaje);
         realizarViajes(cantViaje);
         ordenarTiempoTotal();
@@ -33,7 +35,6 @@ public class Modelo {
                 listaTTordenada.add(listaViaje.get(i).getTiempoTotal());
             }else {
                 Double actual = listaViaje.get(i).getTiempoTotal();
-                Double temp;
                 for (int j = 0; j < listaTTordenada.size(); j++) {
                     if (actual < listaTTordenada.get(j)){
                         listaTTordenada.add(j,actual);
@@ -88,6 +89,7 @@ public class Modelo {
                 i = listaTTordenada.size();
             }
         }
+        tiempoMasCorto = valor;
         return valor;
     }
 
@@ -102,6 +104,7 @@ public class Modelo {
                 i = listaTTordenada.size();
             }
         }
+        tiempoMasLargo = valor;
         return valor;
     }
 
@@ -111,5 +114,17 @@ public class Modelo {
             suma = suma + listaTTordenada.get(i);
         }
         return suma/listaTTordenada.size();//devuelve promedio
+    }
+
+    public long obtenerHorarioServicio1Omnibus() {
+        return Math.round(tiempoMasLargo);
+    }
+
+    public long obtenerHorarioServicio() {
+        return  (Math.round(tiempoMasLargo)/cantOmnibus);
+    }
+
+    public int getCantOmnibus() {
+        return cantOmnibus;
     }
 }

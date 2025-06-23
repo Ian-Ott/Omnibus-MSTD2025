@@ -1,33 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ar.edu.unlu.MSTD2025.Ventana.VentanaEstadisticos">
-  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="4" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
+      <xy x="20" y="20" width="700" height="400"/>
     </constraints>
     <properties>
+      <background color="-1"/>
       <preferredSize width="50" height="50"/>
     </properties>
     <border type="none"/>
     <children>
-      <component id="dfbc" class="javax.swing.JTextArea" binding="estadisticoTextArea" default-binding="true">
-        <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="50"/>
-          </grid>
-        </constraints>
-        <properties>
-          <editable value="false"/>
-          <enabled value="false"/>
-          <text value="Tiempo mayor:&#10;Tiempo menor:&#10;Porcentaje?&#10;horario de servicio?&#10;"/>
-        </properties>
-      </component>
       <grid id="1b346" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <font/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="a072c" class="javax.swing.JTextArea" binding="DATOSESTADISTICOSTextArea" default-binding="true">
@@ -37,9 +28,140 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-27902"/>
+              <disabledTextColor color="-16777216"/>
+              <editable value="false"/>
+              <enabled value="false"/>
+              <font name="Calibri" size="36" style="1"/>
               <text value="DATOS ESTADISTICOS"/>
             </properties>
           </component>
+        </children>
+      </grid>
+      <hspacer id="a0d95">
+        <constraints>
+          <grid row="3" column="5" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <hspacer id="27a91">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <grid id="eacf4" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="4" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="line">
+          <color color="-16777216"/>
+        </border>
+        <children>
+          <component id="dfbc" class="javax.swing.JTextArea" binding="estadisticoTextArea" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="50"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+              <disabledTextColor color="-16777216"/>
+              <editable value="false"/>
+              <enabled value="false"/>
+              <font name="Calibri" size="22" style="1"/>
+              <text value="Tiempo mayor:&#10;Tiempo menor:&#10;Porcentaje:&#10;horario de servicio:&#10;"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="d69b2" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="line">
+          <color color="-16777216"/>
+        </border>
+        <children>
+          <component id="b534a" class="javax.swing.JTextPane" binding="horarioCon1OmnibusTextPane" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="2" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="50"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-27902"/>
+              <disabledTextColor color="-16777216"/>
+              <editable value="false"/>
+              <enabled value="false"/>
+              <font name="Calibri" size="22" style="1"/>
+              <text value="Horario con 1 omnibus."/>
+            </properties>
+          </component>
+          <scrollpane id="25e5d">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="4e83a" class="javax.swing.JList" binding="list1Omnibus">
+                <constraints/>
+                <properties>
+                  <background color="-1"/>
+                  <enabled value="true"/>
+                  <font name="Calibri" size="22" style="1"/>
+                  <model/>
+                </properties>
+              </component>
+            </children>
+          </scrollpane>
+        </children>
+      </grid>
+      <grid id="3fb19" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="2" column="3" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="line">
+          <color color="-16777216"/>
+        </border>
+        <children>
+          <component id="e3683" class="javax.swing.JTextPane" binding="horarioConXOmnibusTextPane" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="50"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-27902"/>
+              <disabledTextColor color="-16777216"/>
+              <editable value="false"/>
+              <enabled value="false"/>
+              <font name="Calibri" size="22" style="1"/>
+              <text value="Horario con x omnibus"/>
+            </properties>
+          </component>
+          <scrollpane id="588d5">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="79e6c" class="javax.swing.JList" binding="listXomnibus">
+                <constraints/>
+                <properties>
+                  <background color="-1"/>
+                  <enabled value="true"/>
+                  <font name="Calibri" size="22" style="1"/>
+                </properties>
+              </component>
+            </children>
+          </scrollpane>
         </children>
       </grid>
     </children>

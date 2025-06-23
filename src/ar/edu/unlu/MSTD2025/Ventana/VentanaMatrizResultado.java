@@ -41,6 +41,7 @@ public class VentanaMatrizResultado {
                 if (frameEstadistico != null) {
                     frameEstadistico.dispose();
                 }
+                new Ventana();
             }
         });
 
@@ -79,6 +80,7 @@ public class VentanaMatrizResultado {
         tabla.getTableHeader().setOpaque(false);
         tabla.getTableHeader().setReorderingAllowed(false);
         tabla.setPreferredScrollableViewportSize(new Dimension(300, 200));
+        tabla.setEnabled(false);
 
 
 
@@ -142,7 +144,7 @@ public class VentanaMatrizResultado {
             public void actionPerformed(ActionEvent e) {
                 BotonSiguiente.setEnabled(false);
                 VentanaEstadisticos estadistico = new VentanaEstadisticos(modelo);
-                frameEstadistico = estadistico.iniciarVentana();
+                frameEstadistico = estadistico.iniciarVentana(BotonSiguiente);
             }
         });
     }

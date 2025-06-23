@@ -4,17 +4,18 @@ import ar.edu.unlu.MSTD2025.Modelo.Matriz.Matriz;
 import ar.edu.unlu.MSTD2025.Modelo.Modelo;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class Ventana {
     private JPanel panelPrincipal;
-    private JTextArea ingreseLaCantidadDeTextArea;
+    private JTextPane txtAreaViaje;
     private JTextArea LOSOMNIBUSTextArea;
     private JTextField textFieldViajes;
     private JButton CALCULARButton;
+    private JTextField textFieldOmnibus;
+    private JTextPane txtAreaOmnibus;
     private Matriz matrizResult;
     private JFrame frame;
     private Modelo modelo;
@@ -25,22 +26,42 @@ public class Ventana {
         frame.add(panelPrincipal);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        txtAreaViaje.setAlignmentX(JTextArea.CENTER_ALIGNMENT);
         CALCULARButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Integer cantViaje = 0;
+                int cantViaje = 0;
+                int cantOmnibus = 0;
+                boolean error = false;
                 try{
-                    cantViaje = Integer.valueOf(textFieldViajes.getText());
+                    cantOmnibus = Integer.parseInt(textFieldOmnibus.getText());
+                    cantViaje = Integer.parseInt(textFieldViajes.getText());
                 } catch (NumberFormatException ex) {
                     mostrarError("El valor ingresado no es valido.");
+                    error = true;
                 }
                 if (cantViaje >= 1 && cantViaje <= 1000000000) {
-                    modelo = new Modelo(cantViaje);
-                    cargarMatriz(cantViaje);
-                    new VentanaMatrizResultado(matrizResult, modelo);
+                    if (cantOmnibus >= 1 && cantOmnibus <= 25) {
+                        modelo = new Modelo(cantViaje, cantOmnibus);
+                        cargarMatriz(cantViaje);
+                        frame.dispose();
+                        new VentanaMatrizResultado(matrizResult, modelo);
+                    }else {
+                        if (!error) {
+                            mostrarError("La cantidad ingresada de omnibus no es valida. (rango permtido 1-25 omnibus)");
+                        }else {
+                            error = false;
+                        }
+                    }
                 }else {
-                    mostrarError("La cantidad ingresada no es valida.");
+                    if (!error) {
+                        mostrarError("La cantidad ingresada de viajes no es valida. (rango permitido 1-");
+                    }else {
+                        error = false;
+                    }
                 }
+
             }
         });
     }
