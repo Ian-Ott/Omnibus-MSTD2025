@@ -19,7 +19,9 @@
         <properties>
           <font/>
         </properties>
-        <border type="none"/>
+        <border type="line">
+          <color color="-16777216"/>
+        </border>
         <children>
           <component id="a072c" class="javax.swing.JTextArea" binding="DATOSESTADISTICOSTextArea" default-binding="true">
             <constraints>

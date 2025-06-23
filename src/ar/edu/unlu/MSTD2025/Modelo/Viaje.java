@@ -57,9 +57,10 @@ public class Viaje {
     }
 
     private void calcularTParada() {
-        double nroAParada = Math.random() * 1;
+        double nroAParada;
         Parada paradaActual;
         for (int i = 0; i < paradas.size();i++){
+            nroAParada = Math.random() * 1;
             paradaActual = paradas.get(i);
             if (nroAParada <= 0.4){
                 paradaActual.setTiempoTotal(paradaActual.getTiempoDemora1());
@@ -108,13 +109,7 @@ public class Viaje {
                 nroAFFCC = Math.random() * 1;
                 if (nroAFFCC <= 0.2){
                     //probabilidad de encontrar la barrera baja
-                    double nroEspFFCC = Math.random() * 1;
-                    //tiempo de espera en barrera baja
-                    if (nroEspFFCC <= 0.6){
-                        tramoActual.setTiempoTotal(tramoActual.getTiempoTotal() + 3);
-                    } else if (nroEspFFCC <= 0.9) {
-                        tramoActual.setTiempoTotal(tramoActual.getTiempoTotal() + 1.5);
-                    }else {tramoActual.setTiempoTotal(tramoActual.getTiempoTotal() + 5);}
+                    calcularFFCC(tramoActual);
                 }
             }
             nroATramo = Math.random() * 1;
@@ -131,6 +126,17 @@ public class Viaje {
             }
             tiempoTotal += tramoActual.getTiempoTotal();
         }
+    }
+
+    private static void calcularFFCC(Tramo tramoActual) {
+        double nroEspFFCC = Math.random() * 1;
+        //tiempo de espera en barrera baja
+        if (nroEspFFCC <= 0.6){
+            tramoActual.setTiempoTotal(tramoActual.getTiempoTotal() + 3);
+        } else if (nroEspFFCC <= 0.9) {
+            tramoActual.setTiempoTotal(tramoActual.getTiempoTotal() + 1.5);
+        }else {
+            tramoActual.setTiempoTotal(tramoActual.getTiempoTotal() + 5);}
     }
 
     public double getTiempoParada(int nroParada) {

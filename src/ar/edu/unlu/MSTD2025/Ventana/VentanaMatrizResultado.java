@@ -13,6 +13,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.DecimalFormat;
+import java.util.Locale;
 
 public class VentanaMatrizResultado {
     private Matriz listaTabla;
@@ -57,11 +59,20 @@ public class VentanaMatrizResultado {
         txtM.setEnabled(false);
         panelM.add(txtM);
 
+        //crea con el formato de punto para los decimales
+        DecimalFormat df = (DecimalFormat) DecimalFormat.getNumberInstance(Locale.US);
+        df.applyPattern("#0.0000");
+        df.setGroupingUsed(false);
+        df.setMaximumFractionDigits(4);
+        df.setMinimumFractionDigits(4);
+
         //se suma una fila para los encabezados
         JTable tabla = new JTable(new DefaultTableModel(listaTabla.getNombreColumnas() ,listaTabla.getFilaTamanio()));
+        String actual;
         for (int i = 0; i < tabla.getRowCount(); i++) {
             for (int j = 0; j < tabla.getColumnCount(); j++) {
-                tabla.setValueAt(listaTabla.getValueAt(i,j),i,j);
+                actual = df.format(listaTabla.getValueAt(i,j));
+                tabla.setValueAt(actual,i,j);
             }
         }
         tabla.setBackground(Color.WHITE);

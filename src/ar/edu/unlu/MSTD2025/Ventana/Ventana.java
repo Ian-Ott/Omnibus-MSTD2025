@@ -26,6 +26,8 @@ public class Ventana {
         frame.add(panelPrincipal);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setTitle("Los Omnibus - MSTD 2025 - Ian Ott");
+        frame.setResizable(false);
 
         txtAreaViaje.setAlignmentX(JTextArea.CENTER_ALIGNMENT);
         CALCULARButton.addActionListener(new ActionListener() {

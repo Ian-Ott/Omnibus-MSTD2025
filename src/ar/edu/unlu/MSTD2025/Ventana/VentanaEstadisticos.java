@@ -6,7 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.DecimalFormat;
 import java.time.LocalTime;
+import java.util.Locale;
 
 public class VentanaEstadisticos {
     private JTextArea estadisticoTextArea;
@@ -23,7 +25,8 @@ public class VentanaEstadisticos {
 
     public JFrame iniciarVentana(JButton botonSiguiente) {
         JFrame frameE = new JFrame();
-        frameE.setTitle("Tabla de resultados");
+        frameE.setTitle("Datos Estadisticos");
+        frameE.setResizable(false);
         frameE.setBackground(Color.WHITE);
         frameE.setSize(500,500);
         frameE.setVisible(true);
@@ -37,10 +40,17 @@ public class VentanaEstadisticos {
             }
         });
 
-        estadisticoTextArea.setText("Tiempo mas corto: " + modelo.obtenerTiempoMasCorto(0.05) +
-                "\nTiempo mas largo: " + modelo.obtenerTiempoMasLargo(0.05) +
-                "\nPromedio de viaje: " + modelo.obtenerPromedioViajes() +
-                "\nHorario de servicio: " /*+ modelo.obtenerHorarioServicio()*/);
+        //crea con el formato de punto para los decimales
+        DecimalFormat df = (DecimalFormat) DecimalFormat.getNumberInstance(Locale.US);
+        df.applyPattern("#0.0000");
+        df.setGroupingUsed(false);
+        df.setMaximumFractionDigits(4);
+        df.setMinimumFractionDigits(4);
+
+        estadisticoTextArea.setText("Tiempo mas corto: " + df.format(modelo.obtenerTiempoMasCorto(0.05)) + " Min" +
+                "\nTiempo mas largo: " + df.format(modelo.obtenerTiempoMasLargo(0.05)) + " Min" +
+                "\nPromedio de viaje: " + df.format(modelo.obtenerPromedioViajes()) + " Min" +
+                "\nHorario de servicio: ");
         horarioConXOmnibusTextPane.setText("Horario con "+modelo.getCantOmnibus() + " Omnibus.");
 
         LocalTime tiempoActual = LocalTime.of(6,0,0);

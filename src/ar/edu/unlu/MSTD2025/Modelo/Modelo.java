@@ -23,7 +23,7 @@ public class Modelo {
             Viaje viaje = new Viaje();
             viaje.calcularViaje();
             listaViaje.add(viaje);
-            System.out.println("Tiempo total viaje: " + viaje.getTiempoTotal());
+            //System.out.println("Tiempo total viaje: " + viaje.getTiempoTotal());
         }
 
     }
